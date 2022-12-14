@@ -7,7 +7,7 @@
 
 <!-- Blog entry -->
 <div class="w3-card-4 w3-margin w3-white">
-<img src="{{% post.image_portada %}}" alt="{{post.image_alt}}" title="{{post.image_title}}" style="width:100%">
+<img src="{{post.image_portada.url}}" alt="{{post.image_portada_alt}}" title="{{post.image_portada_title}}" style="width:100%">
   <div class="w3-container">
     <h3><b>{{ post.title }}</b></h3>
     {% if not post.date_avaliable %}
@@ -20,24 +20,24 @@
   <div class="w3-container">
     <p align="justify">{{post.description}}</p>
     <div class="w3-row">
-      {% if post.readmore_avaliable %}
-      <p><form action="">
+      <div class="w3-col m8 s12">
+      {% if post.date_avaliable %}
+      <p><form action="#">
         <button class="w3-button w3-padding-large w3-white w3-border" type = 'submit'><b>READ MORE »</b></button>
       </form></p>
       {% else %}
-      <div class="w3-col m8 s12">
         <p><button class="w3-button w3-disabled w3-padding-large w3-white w3-border" title="Post not released yet."><b>READ MORE »</b></button></p>
-      </div>
       {% endif %}
+      </div>
       <div class="w3-col m4 w3-hide-small">
-        <p><span class="w3-padding-large w3-right"><b>Comments  </b><span class="w3-badge">0</span></span></p>
+        <p><span class="w3-padding-large w3-right"><b>Comments </b><span class="w3-badge">0</span></span></p>
       </div>
     </div>
   </div>
 </div>
 <hr>
-<!-- END BLOG ENTRIES -->
-
 {% endfor %}
+
+<!-- END BLOG ENTRIES -->
 
 {% endblock %}

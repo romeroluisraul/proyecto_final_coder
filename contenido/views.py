@@ -19,7 +19,6 @@ contexto = {'anio' : str(date.today().year),
 def home(request):
 
     contexto['home_url'] = request.get_full_path() == '/home/'
-    contexto['post_url'] = request.get_full_path() == '/explorando_parques/'
     contexto['pagina_actual'] = request.get_full_path()
     contexto['posteos'] = Post.objects.all()
 

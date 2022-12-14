@@ -41,10 +41,10 @@ and is wrapped around the whole page content, except for the footer in this exam
           <form action="#" style="display:inline-block">
             <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Sign-up</b></button>
           </form>
-          <form action="{% url 'log_in' %}" style="display:inline-block">
+          <form action="#" style="display:inline-block">
             <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-in</b></button>
           </form>
-          <form action="{% url 'log_out' %}" style="display:inline-block">
+          <form action="#" style="display:inline-block">
             <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-out</b></button>
           </form>
           <form action="#" style="display:inline-block">
@@ -84,6 +84,13 @@ and is wrapped around the whole page content, except for the footer in this exam
     <div class="w3-container w3-white">
       <h4><b>Acerca del autor</b></h4>
       <p align="justify">Just me, myself and I, exploring the universe of uknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+      <p align="right">
+      <div>
+          <form action="#">
+          <button class="w3-button w3-white w3-border" type = 'submit'><b>READ MORE »</b></button>
+          </form>
+      </div>
+      </p>
     </div>
   </div><hr>
 
@@ -163,7 +170,6 @@ and is wrapped around the whole page content, except for the footer in this exam
     <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom" type="submit" title="You are already at home page.">Home</button>
     <!-- </form> -->
   {% endif %}
-  <button class="w3-button w3-black w3-padding-large w3-margin-bottom" >Next »</button>
   </p>
   <p>Template powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
   <p>© {{anio}} ROMERO AVILA <a href="mailto:luisr.romeroa@gmail.com?Subject=Pagina%20web%20CoderHouse" target="_blank">e-mail</a>.</p>

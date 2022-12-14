@@ -51,3 +51,74 @@ image_contenido_title:
 image_contenido_alt:
     Parque Nacional Talampaya
 
+----
+
+title:
+    Días de Lluvia: ¿Salimos?
+
+fecha:
+    05/01/2023
+
+tag1:
+    Travel
+
+tag2:
+    Patagonia
+
+subtitle:
+    Con precaución, también permiten ver las rutas de otra manera.
+
+descripcion:
+    Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum.
+
+text_content:
+
+
+image_portada_title:
+    Arcoiris en RN 237 Bariloche-Piedra del Águila
+
+image_portada_alt:
+    Arcoiris en RN 237
+
+image_contenido_title:
+    
+
+image_contenido_alt:
+
+----
+
+title:
+    Descubriendo los Bosques Fueguinos
+
+fecha:
+    20/01/2023
+
+tag1:
+    Travel
+
+tag2:
+    Patagonia
+
+subtitle:
+    La lamentable decadencia causada por un animalito inocente.
+
+descripcion:
+    Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum.
+
+text_content:
+
+
+image_portada_title:
+    Presa en el PN Tierra del Fuego
+
+image_portada_alt:
+    Arcoiris en RN 237
+
+image_contenido_title:
+    
+    Castorera en el PN Tierra del Fuego, AR.
+
+image_contenido_alt:
+
+    Presa realizada por Castores
+    
