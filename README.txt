@@ -5,6 +5,16 @@ Integrante:
 Video funcionamiento:
 
 
+Información sobre la página web:
+
+1. Acceso a la base de datos:
+
+    super usuario: romeroluisraul
+    contraseña: admin1234
+
+
+
+
 
 ------
 

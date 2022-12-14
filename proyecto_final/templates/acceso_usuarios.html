@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if errores_acceso %}
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h3><b>¡Usuario no encontrado!</b></h3>
+        <h5>La combinaci&oacuten de usuario y contrase&ntildea es inv&aacutelida.</h5>
+    </div>
+    <hr>
+</div>
+
+{% endif %}
+
+{% if not request.user.is_authenticated %}
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h4><b>Acceso usuarios registrados</b></h4>
+        <h5><span class="w3-opacity">Introduzca sus datos de acceso:</span></h5>
+
+    </div>
+    <div class="w3-container">
+    <form method="post">
+        {% csrf_token %}
+        <p>Usuario:</p>
+        <input type="text" name="username">
+        <p>Contrase&ntildea:</p>
+        <input type="password" name="password">
+        <p></p>
+        <div class="w3-col m4 w3-hide-small w3-right">
+            <p align="right"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Acceder</button></p>
+        </div>
+    </form>
+    </div>
+</div>
+
+{% else %}
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h4><b>Acceso usuarios registrados</b></h4>
+        <h5><span class="w3-opacity">¡Ya se encuentra loggeado!</span></h5>
+        <p>¿Desea salir e ingresar en otra cuenta?</p>
+        <form action="{% url 'log_out_param' 'log_in' %}" style="display:inline-block">
+            <button class="w3-button w3-black w3-padding-large w3-border w3-margin-bottom" type="submit"><b>Log-out</b></button>
+        </form>
+        <form action="{{pagina_actual}}" style="display:inline-block">
+            <button class="w3-button w3-padding-large w3-white w3-border w3-margin-bottom" type="submit"><b>Volver</b></button>
+        </form>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
