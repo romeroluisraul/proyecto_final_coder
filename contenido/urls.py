@@ -3,5 +3,5 @@ from contenido.views import *
 
 urlpatterns = [
 
-    #path("direccion_url/", view, name = 'nombre')
+    path('busqueda/<tag>/', tags, name='tags'),
 ]

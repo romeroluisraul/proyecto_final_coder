@@ -41,10 +41,10 @@ and is wrapped around the whole page content, except for the footer in this exam
           <form action="#" style="display:inline-block">
             <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Sign-up</b></button>
           </form>
-          <form action="#" style="display:inline-block">
+          <form action="{% url 'log_in' %}" style="display:inline-block">
             <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-in</b></button>
           </form>
-          <form action="#" style="display:inline-block">
+          <form action="{% url 'log_out' %}" style="display:inline-block">
             <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-out</b></button>
           </form>
           <form action="#" style="display:inline-block">
@@ -86,8 +86,8 @@ and is wrapped around the whole page content, except for the footer in this exam
       <p align="justify">Just me, myself and I, exploring the universe of uknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
       <p align="right">
       <div>
-          <form action="#">
-          <button class="w3-button w3-white w3-border" type = 'submit'><b>READ MORE »</b></button>
+          <form action="{% url 'autor' %}">
+          <button class="w3-button w3-white w3-border w3-padding-large" type = 'submit'><b>READ MORE »</b></button>
           </form>
       </div>
       </p>
@@ -131,11 +131,11 @@ and is wrapped around the whole page content, except for the footer in this exam
       <h4>Tags</h4>
     </div>
     <div class="w3-container w3-white">
-    <p><span class="w3-tag w3-black w3-margin-bottom"><a href="/busqueda/Tr/" style="text-decoration:none">Travel</a></span>
+    <p><span class="w3-tag w3-black w3-margin-bottom"><a href="{% url 'tags' 'Tr' %}" style="text-decoration:none">Travel</a></span>
       <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Argentina</span>
       <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Chile</span>
-      <span class="w3-tag w3-black w3-margin-bottom"><a href="/busqueda/Cy/" style="text-decoration:none">Cuyo</a></span>
-      <span class="w3-tag w3-black w3-margin-bottom"><a href="/busqueda/Pat/" style="text-decoration:none">Patagonia</a></span>
+      <span class="w3-tag w3-black w3-margin-bottom"><a href="{% url 'tags' 'Cy' %}" style="text-decoration:none">Cuyo</a></span>
+      <span class="w3-tag w3-black w3-margin-bottom"><a href="{% url 'tags' 'Pat' %}" style="text-decoration:none">Patagonia</a></span>
       <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Lagos</span>
       <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span>
       <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Rutas</span>

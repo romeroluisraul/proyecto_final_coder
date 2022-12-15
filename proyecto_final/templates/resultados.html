@@ -16,9 +16,7 @@
 {% for post in posts %}
 
 <div class="w3-card-4 w3-margin w3-white">
-  {% with ''|add:post.image as image_static %}
-  <img src="{% static image_static %}" alt= "{{ post.image_alt }}" title= "{{ post.image_title }}" style="width:100%">
-  {% endwith %}
+  <img src="{{ post.image_portada.url }}" alt= "{{ post.image_alt }}" title= "{{ post.image_title }}" style="width:100%">
   <div class="w3-container">
     <h3><b>{{ post.title }}</b></h3>
     {% if post.readmore_avaliable %}
