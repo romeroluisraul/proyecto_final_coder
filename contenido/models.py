@@ -46,3 +46,26 @@ class Commentary(models.Model):
     text_commentary = models.TextField(max_length= 400)
     date_commentary = models.DateTimeField()
     related_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+
+        respuesta = self.related_post.title + ': ' + self.commentarist
+
+        return respuesta
+
+def get_comments(ActualPost: Post) -> list:
+
+  comentarios = Commentary.objects.filter(related_post = ActualPost)
+
+  return comentarios
+
+def quantity_comments(ActualPost: Post) -> list:
+
+  comentarios = Commentary.objects.filter(related_post = ActualPost)
+
+  return len(comentarios)
+
+setattr(Post, "related_comments", get_comments)
+setattr(Post, "quantity_comments", quantity_comments)
+
+    

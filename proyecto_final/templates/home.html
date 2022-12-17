@@ -25,13 +25,17 @@
       <p><form action="#">
         <button class="w3-button w3-padding-large w3-white w3-border" type = 'submit'><b>READ MORE »</b></button>
       </form></p>
+    </div>
+    <div class="w3-col m4 w3-hide-small">
+      <p><span class="w3-padding-large w3-right"><b>Comentarios </b><span class="w3-badge">{{post.quantity_comments}}</span></span></p>
+    </div>
       {% else %}
-        <p><button class="w3-button w3-disabled w3-padding-large w3-white w3-border" title="Post not released yet."><b>READ MORE »</b></button></p>
-      {% endif %}
+        <p><button class="w3-button w3-disabled w3-padding-large w3-white w3-border" title="El post no ha abierto para su lectura todavía."><b>READ MORE »</b></button></p>
       </div>
       <div class="w3-col m4 w3-hide-small">
-        <p><span class="w3-padding-large w3-right"><b>Comments </b><span class="w3-badge">0</span></span></p>
+        <p><span class="w3-padding-large w3-right w3-disabled" title="Comentarios no habiltados aún."><b>Comentarios </b><span class="w3-badge">0</span></span></p>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>

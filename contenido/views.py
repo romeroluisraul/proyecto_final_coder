@@ -24,14 +24,11 @@ def home(request):
 def autor(request):
 
     contexto['home_url'] = request.get_full_path() == '/home/'
-    contexto['ultima_pagina'] = request.get_full_path()
+    contexto['ultima_pagina'] = request.get_full_path() 
 
     return render(request, 'autor.html', contexto)
 
 def tags(request, tag):
-
-
-    lista_comentarios = Commentary.objects.all()
 
     contexto['home_url'] = request.get_full_path() == '/home/'
     contexto['ultima_pagina'] = request.get_full_path()
