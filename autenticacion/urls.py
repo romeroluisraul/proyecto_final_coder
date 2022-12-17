@@ -7,4 +7,5 @@ urlpatterns = [
     path("logout/", deslogeo_user, name = 'log_out'),
     path("logout/<destino>", deslogeo_user, name = 'log_out_param'),
     path('user/bienvenido/', bienvenida, name = 'bienvenida'),
+    path("singup/", registro_user, name = 'sing_up')
 ]
