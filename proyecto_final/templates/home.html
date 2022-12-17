@@ -5,43 +5,8 @@
 
 {% for post in posteos %}
 
-<!-- Blog entry -->
-<div class="w3-card-4 w3-margin w3-white">
-<img src="{{post.image_portada.url}}" alt="{{post.image_portada_alt}}" title="{{post.image_portada_title}}" style="width:100%">
-  <div class="w3-container">
-    <h3><b>{{ post.title }}</b></h3>
-    {% if not post.date_avaliable %}
-    <h5>{{ post.subtitle }} <span class="w3-opacity">Available on {{post.date|date:"D M d, Y."}}</span></h5>
-    {% else %}
-    <h5>{{title_description}}<span class="w3-opacity">{{fecha|date:"D M d, Y."}}</span></h5>
-    {% endif %}
-  </div>
+{% include 'visualizacion_resumen_post.html' %}
 
-  <div class="w3-container">
-    <p align="justify">{{post.description}}</p>
-    <div class="w3-row">
-      <div class="w3-col m8 s12">
-      {% if post.date_avaliable %}
-      <p><form action="#">
-        <button class="w3-button w3-padding-large w3-white w3-border" type = 'submit'><b>READ MORE »</b></button>
-      </form></p>
-    </div>
-    <div class="w3-col m4 w3-hide-small">
-      <p><span class="w3-padding-large w3-right"><b>Comentarios </b><span class="w3-badge">{{post.quantity_comments}}</span></span></p>
-    </div>
-      {% else %}
-        <p><button class="w3-button w3-disabled w3-padding-large w3-white w3-border" title="El post no ha abierto para su lectura todavía."><b>READ MORE »</b></button></p>
-      </div>
-      <div class="w3-col m4 w3-hide-small">
-        <p><span class="w3-padding-large w3-right w3-disabled" title="Comentarios no habiltados aún."><b>Comentarios </b><span class="w3-badge">0</span></span></p>
-      </div>
-      {% endif %}
-    </div>
-  </div>
-</div>
-<hr>
 {% endfor %}
-
-<!-- END BLOG ENTRIES -->
 
 {% endblock %}

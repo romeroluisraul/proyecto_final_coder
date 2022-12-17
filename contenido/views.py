@@ -32,7 +32,6 @@ def tags(request, tag):
 
     contexto['home_url'] = request.get_full_path() == '/home/'
     contexto['ultima_pagina'] = request.get_full_path()
-    contexto['script'] = False
 
     etiqueta = tag
     posts = Post.objects.filter(Q(tag1__icontains=etiqueta) | Q(tag2__icontains=etiqueta))
@@ -61,3 +60,21 @@ def tags(request, tag):
     contexto['posts'] = posts
 
     return render(request, 'resultados.html', contexto)
+
+def visualizar_publicacion(request, post):
+
+    contexto['home_url'] = request.get_full_path() == '/home/'
+    contexto['ultima_pagina'] = request.get_full_path()
+
+    posteo = Post.objects.get(title = post)
+
+    contexto['post'] = posteo
+    contexto['texto_post'] = posteo.text_content.split(sep = '\n')
+
+    contexto['image_contenido_list'] = [{'url': posteo.image_contenido.url,'title': posteo.image_contenido_title, 'alt': posteo.image_contenido_alt, 'paragraph': posteo.image_contenido_paragraph},
+                                        {'url': posteo.image_contenido2.url,'title': posteo.image_contenido2_title, 'alt': posteo.image_contenido2_alt, 'paragraph': posteo.image_contenido2_paragraph},
+                                        {'url': posteo.image_contenido3.url,'title': posteo.image_contenido3_title, 'alt': posteo.image_contenido3_alt, 'paragraph': posteo.image_contenido3_paragraph},
+                                        {'url': posteo.image_contenido4.url,'title': posteo.image_contenido4_title, 'alt': posteo.image_contenido4_alt, 'paragraph': posteo.image_contenido4_paragraph},
+                                        ]
+
+    return render(request, 'contenido_post.html', contexto)

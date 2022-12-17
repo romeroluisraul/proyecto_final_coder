@@ -27,11 +27,28 @@ class Post(models.Model):
     date = models.DateField(default=django_now)
 
     image_portada = models.ImageField(upload_to='portadas_post', null=False, blank=False)
-    image_contenido = models.ImageField(upload_to='contenido_post', null=True, blank=True)
     image_portada_alt = models.CharField(max_length=50)
     image_portada_title = models.CharField(max_length=50)
+
+    image_contenido = models.ImageField(upload_to='contenido_post', null=True, blank=True)
     image_contenido_alt = models.CharField(max_length=50, blank=True)
     image_contenido_title = models.CharField(max_length=50, blank=True)
+    image_contenido_paragraph = models.TextField(max_length=500, blank=True)
+
+    image_contenido2 = models.ImageField(upload_to='contenido_post', null=True, blank=True)
+    image_contenido2_alt = models.CharField(max_length=50, blank=True)
+    image_contenido2_title = models.CharField(max_length=50, blank=True) 
+    image_contenido2_paragraph = models.TextField(max_length=500, blank=True)
+
+    image_contenido3 = models.ImageField(upload_to='contenido_post', null=True, blank=True)
+    image_contenido3_alt = models.CharField(max_length=50, blank=True)
+    image_contenido3_title = models.CharField(max_length=50, blank=True)
+    image_contenido3_paragraph = models.TextField(max_length=500, blank=True)
+    
+    image_contenido4 = models.ImageField(upload_to='contenido_post', null=True, blank=True)
+    image_contenido4_alt = models.CharField(max_length=50, blank=True)
+    image_contenido4_title = models.CharField(max_length=50, blank=True)  
+    image_contenido4_paragraph = models.TextField(max_length=500, blank=True)      
 
     @property
     def date_avaliable(self):
@@ -59,13 +76,13 @@ def get_comments(ActualPost: Post) -> list:
 
   return comentarios
 
-def quantity_comments(ActualPost: Post) -> list:
+# def quantity_comments(ActualPost: Post) -> list:
 
-  comentarios = Commentary.objects.filter(related_post = ActualPost)
+#   comentarios = Commentary.objects.filter(related_post = ActualPost)
 
-  return len(comentarios)
+#   return len(comentarios)
 
 setattr(Post, "related_comments", get_comments)
-setattr(Post, "quantity_comments", quantity_comments)
+# setattr(Post, "quantity_comments", quantity_comments)
 
     
