@@ -78,3 +78,39 @@ def visualizar_publicacion(request, post):
                                         ]
 
     return render(request, 'contenido_post.html', contexto)
+
+def pagina_comentarios(request, post):
+
+    contexto['home_url'] = request.get_full_path() == '/home/'
+    contexto['ultima_pagina'] = request.get_full_path()
+
+    posteo = Post.objects.get(title = post)
+
+    if request.method == 'POST':
+
+        mi_formulario = CommentaryForm(request.POST)
+        
+        if mi_formulario.is_valid():
+
+            informacion = mi_formulario.cleaned_data
+            nuevo_comentario = Commentary(commentarist = request.user,
+                                    text_commentary = informacion['text_commentary'],
+                                    date_commentary = datetime.now(),
+                                    related_post = posteo)
+            nuevo_comentario.save()
+            contexto['script'] = True
+
+        else:
+
+            errors = mi_formulario.errors 
+            contexto['errors'] = errors
+            
+    mi_formulario = CommentaryForm()
+
+    contexto['post'] = posteo
+    contexto['comments'] = posteo.related_comments()
+    contexto['form'] = mi_formulario
+
+    contexto['script'] = False
+
+    return render(request, 'comentarios.html', contexto)

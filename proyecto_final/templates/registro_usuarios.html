@@ -50,12 +50,8 @@
         <h4><b>Registro</b></h4>
         <h5><span class="w3-opacity">¡Ya se encuentra loggeado!</span></h5>
         <p>¿Desea salir y registrar otra cuenta?</p>
-        <form action="{% url 'log_out_param' 'sing_up' %}" style="display:inline-block">
-            <button class="w3-button w3-black w3-padding-large w3-border w3-margin-bottom" type="submit"><b>Log-out</b></button>
-        </form>
-        <form action="{{pagina_actual}}" style="display:inline-block">
-            <button class="w3-button w3-padding-large w3-white w3-border w3-margin-bottom" type="submit"><b>Volver</b></button>
-        </form>
+        <a href="{% url 'log_out_param' 'sing_up' %}" style="text-decoration:none"><button class="w3-button w3-black w3-padding-large w3-border w3-margin-bottom" type="submit"><b>Log-out</b></button></a>
+        <a href="{{pagina_actual}}" style="text-decoration:none"><button class="w3-button w3-padding-large w3-white w3-border w3-margin-bottom" type="submit"><b>Volver</b></button></a>
     </div>
 </div>
 

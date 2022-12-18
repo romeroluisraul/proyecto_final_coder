@@ -38,18 +38,10 @@ and is wrapped around the whole page content, except for the footer in this exam
     <div class="div-dark-gray" style="width:100%; height: 40px;">
       <div class="w3-container w3-dark-gray" style="width:100%">
         <div class="w3-content w3-right">
-          <form action="{% url 'sing_up' %}" style="display:inline-block">
-            <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Sign-up</b></button>
-          </form>
-          <form action="{% url 'log_in' %}" style="display:inline-block">
-            <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-in</b></button>
-          </form>
-          <form action="{% url 'log_out' %}" style="display:inline-block">
-            <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-out</b></button>
-          </form>
-          <form action="#" style="display:inline-block">
-            <button class="w3-button w3-dark-gray w3-padding" type="submit"><b>My Account</b></button>
-          </form>
+          <a href="{% url 'sing_up' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Sign-up</b></button></a>
+          <a href="{% url 'log_in' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-in</b></button></a>
+          <a href="{% url 'log_out' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-out</b></button></a>
+          <a href="#" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>My Account</b></button></a>
           <img src="{% static 'profile_user_icon-copia.png' %}" style="height: 32px;">
           {% if request.user.is_authenticated %}
           <b>{{request.user}}</b>
@@ -86,9 +78,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       <p align="justify">Just me, myself and I, exploring the universe of uknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
       <p align="right">
       <div>
-          <form action="{% url 'autor' %}">
-          <button class="w3-button w3-white w3-border w3-padding-large" type = 'submit'><b>READ MORE »</b></button>
-          </form>
+          <a href="{% url 'autor' %}" style="text-decoration:none"><button class="w3-button w3-white w3-border w3-padding-large" type = 'submit'><b>READ MORE »</b></button></a>
       </div>
       </p>
     </div>
@@ -162,9 +152,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
   <p>
   {% if not home_url %}
-    <form action="{% url 'home' %}" style="display:inline-block">
-    <button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Home</button>
-    </form>
+    <a href="{% url 'home' %}" style="text-decoration:none"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Home</button></a>
   {% else %}
     <!-- <form action= {% url 'home' %} style="display:inline-block"> -->
     <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom" type="submit" title="You are already at home page.">Home</button>

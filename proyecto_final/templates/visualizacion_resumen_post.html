@@ -14,12 +14,11 @@
     <div class="w3-row">
       <div class="w3-col m8 s12">
       {% if post.date_avaliable %}
-      <p><form action="{% url 'visualizar' post.title %}">
-        <button class="w3-button w3-padding-large w3-white w3-border" type = 'submit'><b>READ MORE »</b></button>
-      </form></p>
+      <p><a href="{% url 'visualizar' post.title %}" style="text-decoration:none"><button class="w3-button w3-padding-large w3-white w3-border" type = 'submit'><b>READ MORE »</b></button></a>
+      </p>
     </div>
     <div class="w3-col m4 w3-hide-small">
-      <p><span class="w3-padding-large w3-right"><b>Comentarios </b><span class="w3-badge">{{post.related_comments|length}}</span></span></p>
+      <p><span class="w3-padding-large w3-right"><b><a href="{% url 'comentarios' post.title %}" style="text-decoration:none">Comentarios </b><span class="w3-badge">{{post.related_comments|length}}</span></a></span></p>
     </div>
       {% else %}
         <p><button class="w3-button w3-disabled w3-padding-large w3-white w3-border" title="El post no ha abierto para su lectura todavía."><b>READ MORE »</b></button></p>

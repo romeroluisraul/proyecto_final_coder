@@ -32,7 +32,7 @@
     {% endfor %}
     <br>
     <div class="w3-container">
-        <p><span class="w3-padding-large w3-right"><a href="#" style="text-decoration:none"><b>Visualizar comentarios </b><span class="w3-badge">{{post.related_comments|length}}</a></span></span></p>
+        <p><span class="w3-padding-large w3-right"><a href="{% url 'comentarios' post.title %}" style="text-decoration:none"><b>Visualizar comentarios </b><span class="w3-badge">{{post.related_comments|length}}</a></span></span></p>
     </div>
     <br>
   </div>

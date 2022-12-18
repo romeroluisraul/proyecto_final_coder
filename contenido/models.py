@@ -66,7 +66,7 @@ class Commentary(models.Model):
 
     def __str__(self):
 
-        respuesta = self.related_post.title + ': ' + self.commentarist
+        respuesta = self.related_post.title + ': ' + self.commentarist + ' at ' + self.date_commentary.strftime('%d/%m/%Y, %H:%M:%S')
 
         return respuesta
 
@@ -76,13 +76,7 @@ def get_comments(ActualPost: Post) -> list:
 
   return comentarios
 
-# def quantity_comments(ActualPost: Post) -> list:
-
-#   comentarios = Commentary.objects.filter(related_post = ActualPost)
-
-#   return len(comentarios)
-
 setattr(Post, "related_comments", get_comments)
-# setattr(Post, "quantity_comments", quantity_comments)
+
 
     

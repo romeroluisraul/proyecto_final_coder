@@ -6,22 +6,22 @@
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">
         <h3><b>P&aacutegina de Comentarios del Post</b></h3>
-        <h4><b>{{title}}</b></h4>
-        <h5>{{title_description}}<span class="w3-opacity">{{fecha|date:"D M d, Y."}}</span></h5>
+        <h4><b>{{post.title}}</b></h4>
+        <h5>{{post.subtitle}}<span class="w3-opacity">{{post.date|date:"D M d, Y."}}</span></h5>
     </div>
     <hr>
 </div>
 <hr>
 
-{% for comentario in lista_comentarios %}
+{% for comment in comments %}
 
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container"> 
-        <h5><b>{{comentario.commentarist}}</b></h5>
-        <h5><span class="w3-opacity">{{comentario.date_commentary}}</span></h5>
+        <h5><b>{{comment.commentarist}}</b></h5>
+        <h5><span class="w3-opacity">{{comment.date_commentary}}</span></h5>
     </div>
     <div class="w3-container">
-        <p align="justify">{{comentario.text_commentary}}</p>
+        <p align="justify">{{comment.text_commentary}}</p>
     </div>
 </div>
 <hr>
