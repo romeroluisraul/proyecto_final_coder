@@ -24,6 +24,7 @@ import contenido.views as contenido
 from proyecto_final.settings import MEDIA_ROOT, MEDIA_URL
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import reverse
 
 urlpatterns = [
     path('admin/', admin.site.urls),

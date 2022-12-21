@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if script %}
+
+<script>
+    alert("Tu post ha sido guardado exitosamente.");
+</script>
+
+{% endif %}
+
+{% if errors %}
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h3><b>¡Error en el registro!</b></h3>
+        <h5>{{errors}}</h5>
+    </div>
+    <hr>
+</div>
+
+{% endif %}
+
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h4><b>Crear un nuevo Post</b></h4>
+        <h5><span class="w3-opacity">Introduzca los datos del Post</span></h5>
+
+    </div>
+    <div class="w3-container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Seleccione los tags asociados al post:</p>
+        <select name="tag1">
+            {% for value, label in choices %}
+            <option value="{{value}}">{{label}}</option>
+            {% endfor %}
+        </select>
+        <select name="tag2">
+            {% for value, label in choices %}
+            <option value="{{value}}">{{label}}</option>
+            {% endfor %}
+        </select> 
+        <p>T&iacutetulo:</p>
+        <textarea rows="1" cols="112" name="title"></textarea>
+        <p>Idea principal, se visualiza como subt&iacutetulo:</p>
+        <textarea rows="2" cols="112" name="subtitle"></textarea>
+        <p>Descripci&oacuten:</p>
+        <textarea rows="5" cols="112" name="description"></textarea>
+        <p>Contenido escrito del post:</p>
+        <textarea rows="30" cols="112" name="text_content"></textarea>
+        <p></p>
+        <label for="date">Fecha de lanzamiento del post:<br></label><input type="date" name="date">
+        <p></p>
+        <label for="image_portada">Imagen de portada del post:<br></label><input type="file" name="image_portada" accept="image/*">
+        <p></p>
+        <label for="image_portada_alt">Texto de la imagen en caso de errores:<br></label><input type="text" name="image_portada_alt">
+        <p></p>
+        <label for="image_portada_title">Texto de la imagen al posar el cursor:<br></label><input type="text" name="image_portada_title">
+        <p></p>
+        <div class="w3-col m4 w3-hide-small w3-right">
+            <p align="right"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Guardar</button></p>
+        </div>
+    </form>
+    </div>
+</div>
+
+{% endblock %}

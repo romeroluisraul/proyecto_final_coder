@@ -26,29 +26,29 @@ class Post(models.Model):
     text_content = models.TextField(max_length=7000, blank=True)
     date = models.DateField(default=django_now)
 
-    image_portada = models.ImageField(upload_to='portadas_post', null=False, blank=False)
+    image_portada = models.ImageField(upload_to='portadas_post')
     image_portada_alt = models.CharField(max_length=50)
     image_portada_title = models.CharField(max_length=50)
 
     image_contenido = models.ImageField(upload_to='contenido_post', null=True, blank=True)
-    image_contenido_alt = models.CharField(max_length=50, blank=True)
-    image_contenido_title = models.CharField(max_length=50, blank=True)
-    image_contenido_paragraph = models.TextField(max_length=500, blank=True)
+    image_contenido_alt = models.CharField(max_length=50, blank=True, null=True)
+    image_contenido_title = models.CharField(max_length=50, blank=True, null=True)
+    image_contenido_paragraph = models.TextField(max_length=500, blank=True, null=True)
 
     image_contenido2 = models.ImageField(upload_to='contenido_post', null=True, blank=True)
-    image_contenido2_alt = models.CharField(max_length=50, blank=True)
-    image_contenido2_title = models.CharField(max_length=50, blank=True) 
-    image_contenido2_paragraph = models.TextField(max_length=500, blank=True)
+    image_contenido2_alt = models.CharField(max_length=50, blank=True, null=True)
+    image_contenido2_title = models.CharField(max_length=50, blank=True, null=True) 
+    image_contenido2_paragraph = models.TextField(max_length=500, blank=True, null=True)
 
     image_contenido3 = models.ImageField(upload_to='contenido_post', null=True, blank=True)
-    image_contenido3_alt = models.CharField(max_length=50, blank=True)
-    image_contenido3_title = models.CharField(max_length=50, blank=True)
-    image_contenido3_paragraph = models.TextField(max_length=500, blank=True)
+    image_contenido3_alt = models.CharField(max_length=50, blank=True, null=True)
+    image_contenido3_title = models.CharField(max_length=50, blank=True, null=True)
+    image_contenido3_paragraph = models.TextField(max_length=500, blank=True, null=True)
     
     image_contenido4 = models.ImageField(upload_to='contenido_post', null=True, blank=True)
-    image_contenido4_alt = models.CharField(max_length=50, blank=True)
-    image_contenido4_title = models.CharField(max_length=50, blank=True)  
-    image_contenido4_paragraph = models.TextField(max_length=500, blank=True)      
+    image_contenido4_alt = models.CharField(max_length=50, blank=True, null=True)
+    image_contenido4_title = models.CharField(max_length=50, blank=True, null=True)  
+    image_contenido4_paragraph = models.TextField(max_length=500, blank=True, null=True)      
 
     @property
     def date_avaliable(self):

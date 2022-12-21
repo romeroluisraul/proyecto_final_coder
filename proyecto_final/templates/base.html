@@ -38,6 +38,9 @@ and is wrapped around the whole page content, except for the footer in this exam
     <div class="div-dark-gray" style="width:100%; height: 40px;">
       <div class="w3-container w3-dark-gray" style="width:100%">
         <div class="w3-content w3-right">
+          {% if request.user.is_superuser %}
+          <a href="{% url 'nuevo_post' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>New Post</b></button></a>
+          {% endif %}
           <a href="{% url 'sing_up' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Sign-up</b></button></a>
           <a href="{% url 'log_in' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-in</b></button></a>
           <a href="{% url 'log_out' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-out</b></button></a>
@@ -52,7 +55,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       </div>
     </div>
     <div class="w3-container w3-center">
-      <h1 align="center"><b>MI BLOG: En Ruta por Argentina</b></h1>
+      <h1 align="center"><a href="{% url 'home' %}" style="text-decoration:none"><b>MI BLOG: En Ruta por Argentina</b></a></h1>
     </div>
     <div class="div-blue" style="width:100%; height: 10px;"></div>
   </div>
@@ -64,84 +67,77 @@ and is wrapped around the whole page content, except for the footer in this exam
 <!-- Grid -->
 <div class="w3-row">
 <!-- Blog entries -->
-<div class="w3-col l8 s12">
-  {% block content %}{% endblock %}
-</div>
+  <div class="w3-col l8 s12">
+    {% block content %}{% endblock %}
+  </div>
 
 <!-- Introduction menu -->
-<div class="w3-col l4">
-  <!-- About Card -->
-  <div class="w3-card w3-margin w3-margin-top"> 
-  <img src="{% static 'el_autor_copia.jpg' %}" alt="Imagen del Autor" title="El autor en el Cerro Santa Lucía, Santiago Centro, CL" style="width:100%">
-    <div class="w3-container w3-white">
-      <h4><b>Acerca del autor</b></h4>
-      <p align="justify">Just me, myself and I, exploring the universe of uknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
-      <p align="right">
-      <div>
-          <a href="{% url 'autor' %}" style="text-decoration:none"><button class="w3-button w3-white w3-border w3-padding-large" type = 'submit'><b>READ MORE »</b></button></a>
+  <div class="w3-col l4">
+    <!-- About Card -->
+    <div class="w3-card w3-margin w3-margin-top"> 
+    <img src="{% static 'el_autor_copia.jpg' %}" alt="Imagen del Autor" title="El autor en el Cerro Santa Lucía, Santiago Centro, CL" style="width:100%">
+      <div class="w3-container w3-white">
+        <h4><b>Acerca del autor</b></h4>
+        <p align="justify">Just me, myself and I, exploring the universe of uknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+        <p align="right">
+        <div>
+            <a href="{% url 'autor' %}" style="text-decoration:none"><button class="w3-button w3-white w3-border w3-padding-large" type = 'submit'><b>READ MORE »</b></button></a>
+        </div>
+        </p>
       </div>
-      </p>
-    </div>
-  </div><hr>
+    </div><hr>
 
 
-  <!-- Posts -->
-  <div class="w3-card w3-margin">
-    <div class="w3-container w3-padding">
-      <h4>Iconos favoritos del autor</h4>
+    <!-- Posts -->
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4>Iconos favoritos del autor</h4>
+      </div>
+      <ul class="w3-ul w3-hoverable w3-white">
+        <li class="w3-padding-16">
+          <img src="{% static 'pasaporte.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Lorem</span><br>
+          <span>Sed mattis nunc</span>
+        </li>
+        <li class="w3-padding-16">
+          <img src="{% static 'ruta_40.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Ipsum</span><br>
+          <span>Praes tinci sed</span>
+        </li> 
+        <li class="w3-padding-16">
+          <img src="{% static 'dollar.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Dorum</span><br>
+          <span>Ultricies congue</span>
+        </li>   
+        <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+          <img src="{% static 'usb.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Mingsum</span><br>
+          <span>Lorem ipsum dipsum</span>
+        </li>  
+      </ul>
     </div>
-    <ul class="w3-ul w3-hoverable w3-white">
-      <li class="w3-padding-16">
-        <img src="{% static 'pasaporte.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large">Lorem</span><br>
-        <span>Sed mattis nunc</span>
-      </li>
-      <li class="w3-padding-16">
-        <img src="{% static 'ruta_40.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large">Ipsum</span><br>
-        <span>Praes tinci sed</span>
-      </li> 
-      <li class="w3-padding-16">
-        <img src="{% static 'dollar.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large">Dorum</span><br>
-        <span>Ultricies congue</span>
-      </li>   
-      <li class="w3-padding-16 w3-hide-medium w3-hide-small">
-        <img src="{% static 'usb.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large">Mingsum</span><br>
-        <span>Lorem ipsum dipsum</span>
-      </li>  
-    </ul>
-  </div>
-  <hr> 
- 
-  <!-- Labels / tags -->
-  <div class="w3-card w3-margin">
-    <div class="w3-container w3-padding">
-      <h4>Tags</h4>
-    </div>
-    <div class="w3-container w3-white">
-    <p><span class="w3-tag w3-black w3-margin-bottom"><a href="{% url 'tags' 'Tr' %}" style="text-decoration:none">Travel</a></span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Argentina</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Chile</span>
-      <span class="w3-tag w3-black w3-margin-bottom"><a href="{% url 'tags' 'Cy' %}" style="text-decoration:none">Cuyo</a></span>
-      <span class="w3-tag w3-black w3-margin-bottom"><a href="{% url 'tags' 'Pat' %}" style="text-decoration:none">Patagonia</a></span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Lagos</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Rutas</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Rata-tips</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Monta&ntildeas</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Costa Atl&aacutentica</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Parques</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Centro</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Buenos Aires</span>
-    </p>
-    </div>
-  </div>
+    <hr> 
   
+    <!-- Labels / tags -->
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4>Tags</h4>
+      </div>
+      <div class="w3-container w3-white">
+      <p>
+        {% for tag, label in tags %}
+        {% if tag in tags_usados %}
+        <span class="w3-tag w3-black w3-margin-bottom"><a href="{% url 'tags' tag %}" style="text-decoration:none">{{label}}</a></span>
+        {% else %}
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">{{label}}</span>
+        {% endif %}
+        {% endfor %}
+      </p>
+      </div>
+    </div>
+    
 <!-- END Introduction Menu -->
-</div>
-
+  </div>
 <!-- END GRID -->
 </div><br>
 
