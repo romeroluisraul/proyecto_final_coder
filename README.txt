@@ -12,6 +12,28 @@ Información sobre la página web:
     super usuario: romeroluisraul
     contraseña: admin1234
 
+¿En qué consiste la página web?
+
+La idea general del proyecto es un blog donde el autor comenta ciertas observaciones curiosas de sus viajes en ruta.
+
+El blog tiene una home, donde se lista un breve resumen de cada uno de los posteos. Cada posteo tiene una fecha de liberación, a partir del cual pasa a estar en estado disponible para lectura. También a partir de esa fecha, los lectores podrán comentar cada una de las publicaciones e interactuar entre ellos en la sección de comentarios de cada publicación.
+
+Para visualizar los contenidos se puede, o bien visualizar la totalidad de las publicaciones en la home, o bien filtrar los contenidos por medio de los tags o etiquetas de cada publicación. Este filtro se encuentra a lado derecho de la pagina web. Se ha programado de forma tal que cuando se cargan nuevas publicaciones, se actualicen los filtros disponibles y se resalten, pudiendo también filtrar las nuevas publicaciones.
+
+El blog tambien tiene un sobre mí, que habla del autor y qué es lo que hace más allá de los post.
+
+El blog implementa también registro, logeo y deslogeo de usuarios. Los lectores invitados, es decir, los lectores sin usuario registrado, pueden leer todas las publicaciones pero no pueden comentar. Solo los usuarios registrados y logeados pueden realizar comentarios. Los superusuarios pueden además crear nuevas publicaciones.
+
+Rutas de la pagina web:
+
+
+
+
+
+
+
+
+
 
 
 

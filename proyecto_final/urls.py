@@ -29,7 +29,7 @@ from django.urls import reverse
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', contenido.home, name = 'home'),
-    path('author/', contenido.autor, name = 'autor'),
+    path('about/', contenido.autor, name = 'autor'),
     path('posts/', include("contenido.urls")),
     path('authentication/', include("autenticacion.urls")),
 ]
