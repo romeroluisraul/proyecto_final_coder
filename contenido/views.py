@@ -47,6 +47,10 @@ def autor(request):
 
     return render(request, 'autor.html', contexto)
 
+def redirect_home(request):
+
+    return redirect('home')
+
 def tags(request, tag):
 
     contexto['home_url'] = request.get_full_path() == '/home/'
@@ -150,7 +154,150 @@ def crear_nuevo_post(request):
             contexto['errors'] = errors
             
     if request.method == 'GET':
-
+        
         contexto['script'] = False
 
     return render(request, 'crear_nuevo_post.html', contexto)
+
+@user_passes_test(lambda user: user.is_superuser)
+def editar_post(request, post):
+
+    contexto['home_url'] = request.get_full_path() == '/home/'
+    contexto['choices'] = TAGS_CHOICES
+
+    Posteo = Post.objects.get(title = post)
+    contexto['title'] = post
+
+    print('ERRRRROR')
+
+    default_values = {'tag1':  Posteo.tag1, 'tag2':  Posteo.tag2,
+                    'tag1_label': choices(Posteo.tag1), 'tag2_label': choices(Posteo.tag2),
+                    'title':  Posteo.title, 'subtitle':  Posteo.subtitle,
+                    'description':  Posteo.description, 'text_content':  Posteo.text_content,
+                    'date':  Posteo.date,
+                    'image_portada':  Posteo.image_portada, 'image_portada_alt':  Posteo.image_portada_alt, 'image_portada_title':  Posteo.image_portada_title}
+
+    contexto['default_values'] = default_values
+
+    if request.method == 'POST':
+
+        mi_formulario = PublicationForm(request.POST, files = request.FILES)
+        
+        if mi_formulario.is_valid():
+
+            informacion = mi_formulario.cleaned_data    
+
+            atributos = ['tag1','tag2','title','subtitle','description','text_content','date']
+            atributos += ['image_portada','image_portada_alt','image_portada_title']
+
+            for atributo in atributos:
+
+                setattr(Posteo, atributo, informacion[atributo])
+
+            Posteo.save()
+            contexto['script'] = True
+
+        else:
+
+            errors = mi_formulario.errors 
+            contexto['errors'] = errors
+            
+    if request.method == 'GET':
+
+        contexto['script'] = False
+
+    return render(request, 'editar_post.html', contexto)
+
+@user_passes_test(lambda user: user.is_superuser)
+def editar_galeria(request, post):
+
+    contexto['home_url'] = request.get_full_path() == '/home/'
+
+    Posteo = Post.objects.get(title = post)
+
+    if request.method == 'POST':
+
+        mi_formulario = ImageGalleryForm(request.POST, files = request.FILES)
+        
+        if mi_formulario.is_valid():
+
+            informacion = mi_formulario.cleaned_data   
+
+            atributos = ['image_contenido','image_contenido_alt','image_contenido_title','image_contenido_paragraph']
+            atributos += ['image_contenido2','image_contenido2_alt','image_contenido2_title','image_contenido2_paragraph']
+            atributos += ['image_contenido3','image_contenido3_alt','image_contenido3_title','image_contenido3_paragraph']
+            atributos += ['image_contenido4','image_contenido4_alt','image_contenido4_title','image_contenido4_paragraph']
+
+            i = 0
+            while atributos[i] in informacion.keys():
+                
+                setattr(Posteo, atributos[i], informacion[atributos[i]]) 
+                i += 1
+
+            Posteo.save()
+            contexto['script'] = True
+
+        else:
+
+            errors = mi_formulario.errors 
+            contexto['errors'] = errors
+            
+    if request.method == 'GET':
+
+        contexto.pop('errors', None)
+
+        # images_name = ['Imagen 1','Imagen 2','Imagen 3','Imagen 4']
+
+        # image_to_load = ['image_contenido','image_contenido2','image_contenido3','image_contenido4']
+        # images_alt_atr = ['image_contenido_alt','image_contenido2_alt','image_contenido3_alt','image_contenido4_alt']
+        # images_title_atr = ['image_contenido_title','image_contenido2_title','image_contenido3_title','image_contenido4_title']
+        # images_paragraph_atr = ['image_contenido_paragraph','image_contenido2_paragraph','image_contenido3_paragraph','image_contenido4_paragraph']
+
+        # images_alt_instance = [Posteo.image_contenido_alt, Posteo.image_contenido2_alt, Posteo.image_contenido3_alt, Posteo.image_contenido4_alt]
+        # images_title_instance = [Posteo.image_contenido_title, Posteo.image_contenido2_title, Posteo.image_contenido3_title, Posteo.image_contenido4_title]
+        # images_paragraph_instance = [Posteo.image_contenido_paragraph, Posteo.image_contenido2_paragraph, Posteo.image_contenido3_paragraph, Posteo.image_contenido4_paragraph]
+
+        # contexto['images_name'] = images_name
+        # contexto['image_to_load'] = image_to_load
+        # contexto['images_alt_atr'] = images_alt_atr
+        # contexto['images_title_atr'] = images_title_atr
+        # contexto['images_title_instance'] = images_title_instance
+        # contexto['images_paragraph_atr'] = images_paragraph_atr
+        # contexto['images_alt_instance'] = images_alt_instance
+        # contexto['images_paragraph_instance'] = images_paragraph_instance
+
+        # contexto['iterator'] = range(1,4)
+
+        imagen_1 = {'name': 'Imagen 1',
+                    'image_name_on_form': 'image_contenido',
+                    'image_alt_on_form': 'image_contenido_alt',
+                    'image_alt_value': Posteo.image_contenido_alt,
+                    'image_title_on_form': 'image_contenido_title',
+                    'image_title_value': Posteo.image_contenido_title,
+                    'images_paragraph_on_form': 'image_contenido_paragraph',
+                    'image_paragraph_on_form': Posteo.image_contenido_paragraph,
+                    }
+
+        imagen_2 = {'name': 'Imagen 2',
+                    'image_name_on_form': 'image_contenido2',
+                    'image_alt_on_form': 'image_contenido2_alt',
+                    'image_alt_value': Posteo.image_contenido2_alt,
+                    'image_title_on_form': 'image_contenido2_title',
+                    'image_title_value': Posteo.image_contenido2_title,
+                    'images_paragraph_on_form': 'image_contenido2_paragraph',
+                    'image_paragraph_on_form': Posteo.image_contenido2_paragraph,
+                    }
+
+        imagen_3 = {'name': 'Imagen 3',
+                    'image_name_on_form': 'image_contenido3',
+                    'image_alt_on_form': 'image_contenido3_alt',
+                    'image_alt_value': Posteo.image_contenido3_alt,
+                    'image_title_on_form': 'image_contenido3_title',
+                    'image_title_value': Posteo.image_contenido3_title,
+                    'images_paragraph_on_form': 'image_contenido3_paragraph',
+                    'image_paragraph_on_form': Posteo.image_contenido3_paragraph,
+                    }
+
+        contexto['imagenes'] = [imagen_1,imagen_2,imagen_3]
+
+    return render(request, 'editar_galeria.html', contexto)

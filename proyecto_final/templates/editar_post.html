@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if script %}
+
+<script>
+    alert("Tu post ha sido actualizado exitosamente.");
+</script>
+
+{% endif %}
+
+{% if errors and not script %}
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h3><b>¡Error en el registro!</b></h3>
+        <h5>{{errors}}</h5>
+    </div>
+    <hr>
+</div>
+
+{% endif %}
+
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h4><b>Editar un Post</b></h4>
+        <h5><span class="w3-opacity">Introduzca los datos del Post</span></h5>
+
+    </div>
+    <div class="w3-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Seleccione los tags asociados al post:</p>
+            <select name="tag1">
+                <option value="{{default_values.tag1}}">{{default_values.tag1_label}}</option>
+                {% for value, label in choices %}
+                {% if value != default_values.tag1 %}
+                <option value="{{value}}">{{label}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <select name="tag2">
+                <option value="{{default_values.tag2}}">{{default_values.tag2_label}}</option>
+                {% for value, label in choices %}
+                {% if value != default_values.tag2 %}
+                <option value="{{value}}">{{label}}</option>
+                {% endif %}
+                {% endfor %}
+            </select> 
+            <p>T&iacutetulo:</p>
+            <textarea rows="1" cols="112" name="title">{{default_values.title}}</textarea>
+            <p>Idea principal, se visualiza como subt&iacutetulo:</p>
+            <textarea rows="2" cols="112" name="subtitle">{{default_values.subtitle}}</textarea>
+            <p>Descripci&oacuten:</p>
+            <textarea rows="5" cols="112" name="description">{{default_values.description}}</textarea>
+            <p>Contenido escrito del post:</p>
+            <textarea rows="30" cols="112" name="text_content">{{default_values.text_content}}</textarea>
+            <p></p>
+            <label for="date">Fecha de lanzamiento del post:<br></label><input type="date" name="date" value="{{default_values.date|date:'Y-m-d'}}">
+            <p></p>
+            <label for="image_portada">Imagen de portada del post:<br></label><input type="file" name="image_portada" accept="image/*">
+            <p></p>
+            <label for="image_portada_alt">Texto de la imagen en caso de errores:<br></label><input type="text" name="image_portada_alt" value="{{default_values.image_portada_alt}}">
+            <p></p>
+            <label for="image_portada_title">Texto de la imagen al posar el cursor:<br></label><input type="text" name="image_portada_title" value="{{default_values.image_portada_title}}">
+            <p></p>
+            <h4>Recuerde:</h4>
+            <ul>
+                <li type="square">No es posible cargar valores por defecto para las im&aacutegenes, por lo que cada vez que realice una modificaci&oacuten del post deber&aacute cargarlas nuevamente.</li>
+            </ul>
+            <div class="w3-col m4 w3-hide-small w3-right">
+                <p align="right"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Guardar</button></p>
+            </div>
+        </form>
+        <div class="w3-container w3-right">
+            <div class="w3-col m4 w3-hide-small w3-right">
+                <p align='right'><a href="{% url 'visualizar' default_values.title %}" style="text-decoration:none"><button class="w3-button w3-white w3-border w3-padding-large w3-margin-bottom">Volver</button></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

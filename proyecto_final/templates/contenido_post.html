@@ -9,7 +9,15 @@
       <h3><b>{{ post.title }}</b></h3>
       <h5>{{post.subtitle}}<span class="w3-opacity"> {{post.date|date:"D M d, Y."}}</span></h5>
       <p align="justify">{{post.description}}</p>
+      {% if request.user.is_superuser %}
+        <p><span class="w3-padding-large w3-right"><a href="{% url 'editar_post' post.title %}" style="text-decoration:none"><b>Editar esta Publicaci&oacuten</b></a></span></p>
+      {% endif %}
   </div>
+  <!-- {% if request.user.is_superuser %}
+  <div class="w3-container">
+    <p><span class="w3-padding-large w3-right"><a href="{% url 'editar_post' post.title %}" style="text-decoration:none"><b>Editar esta publicaci&oacuten</b></a></span></p>
+  </div>
+  {% endif %} -->
   <hr>
   <div class="w3-container">
     {% for paragraph in texto_post %}
@@ -18,6 +26,11 @@
 
     <hr>
     <h3><b>Galer&iacutea de Im&aacutegenes:</b></h3>
+    {% if request.user.is_superuser %}
+    <p><span class="w3-padding-large w3-right"><a href="{% url 'editar_galeria' post.title %}" style="text-decoration:none"><b>Editar Galer&iacutea de Im&aacutegenes</b></a></span></p>
+    <br>
+    <br>
+    {% endif %}
     <br>
 
     {% for image in image_contenido_list %}

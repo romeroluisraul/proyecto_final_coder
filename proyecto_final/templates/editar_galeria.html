@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if script%}
+
+<script>
+    alert("Tu post ha sido actualizado exitosamente.");
+</script>
+
+{% endif %}
+
+{% if errors and not script %}
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h3><b>¡Error en el registro!</b></h3>
+        <h5>{{errors}}</h5>
+    </div>
+    <hr>
+</div>
+
+{% endif %}
+
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h4><b>Editar galer&iacutea de im&aacutegenes</b></h4>
+        <h5><span class="w3-opacity">Introduzca los datos del Post</span></h5>
+
+    </div>
+    <div class="w3-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for image in imagenes %}
+            <label for="{{image.name}}">{{image.name}}:<br></label><input type="file" name="{{image.image_name_on_form}}" accept="image/*">
+            <p></p> 
+            <label for="{{image.image_alt_on_form}}">Texto de la imagen en caso de errores:<br></label><input type="text" name="{{image.image_alt_on_form}}" value="{{image.image_alt_value}}">
+            <p></p>
+            <label for="{{image.image_title_on_form}}">Texto de la imagen al posar el cursor:<br></label><input type="text" name="{{image.image_title_on_form}}" value="{{image.image_title_value}}">
+            <p></p>
+            <textarea rows="5" cols="112" name="{{image.images_paragraph_on_form}}" placeholder="Introduzca una breve descripción de la {{image.name}}.">{{image.image_contenido2_paragraph}}</textarea>
+            <p></p>
+            {% endfor %}
+            <h4>Recuerde:</h4>
+            <ul>
+                <li type="square">No es posible cargar valores por defecto para las im&aacutegenes, por lo que cada vez que realice una modificaci&oacuten del post deber&aacute cargarlas nuevamente.</li>
+            </ul>
+            <div class="w3-col m4 w3-hide-small w3-right">
+                <p align="right"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Guardar</button></p>
+            </div>
+        </form>
+        <div class="w3-container w3-right">
+            <div class="w3-col m4 w3-hide-small w3-right">
+                <p align='right'><a href="{% url 'visualizar' post %}" style="text-decoration:none"><button class="w3-button w3-white w3-border w3-padding-large w3-margin-bottom">Volver</button></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

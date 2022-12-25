@@ -33,6 +33,8 @@ class PublicationForm(forms.Form):
     image_portada_alt = forms.CharField(max_length=50)
     image_portada_title = forms.CharField(max_length=50)
 
+class ImageGalleryForm(forms.Form):
+
     image_contenido = forms.ImageField(required=False)
     image_contenido_alt = forms.CharField(max_length=50, required=False)
     image_contenido_title = forms.CharField(max_length=50, required=False)
