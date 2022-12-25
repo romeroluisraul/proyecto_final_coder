@@ -11,7 +11,7 @@
       <p align="justify">{{post.description}}</p>
       {% if request.user.is_superuser %}
         <p><span class="w3-padding-large w3-right"><a href="{% url 'editar_post' post.title %}" style="text-decoration:none"><b>Editar esta Publicaci&oacuten</b></a></span></p>
-        <p><span class="w3-padding-large w3-right"><a href="{% url 'editar_post' post.title %}" style="text-decoration:none"><b>Eliminar esta Publicaci&oacuten</b></a></span></p>
+        <p><span class="w3-padding-large w3-right"><a href="{% url 'eliminar_post' post.title %}" style="text-decoration:none"><b>Eliminar esta Publicaci&oacuten</b></a></span></p>
       {% endif %}
   </div>
   <!-- {% if request.user.is_superuser %}
