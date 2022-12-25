@@ -246,28 +246,6 @@ def editar_galeria(request, post):
 
         contexto.pop('errors', None)
 
-        # images_name = ['Imagen 1','Imagen 2','Imagen 3','Imagen 4']
-
-        # image_to_load = ['image_contenido','image_contenido2','image_contenido3','image_contenido4']
-        # images_alt_atr = ['image_contenido_alt','image_contenido2_alt','image_contenido3_alt','image_contenido4_alt']
-        # images_title_atr = ['image_contenido_title','image_contenido2_title','image_contenido3_title','image_contenido4_title']
-        # images_paragraph_atr = ['image_contenido_paragraph','image_contenido2_paragraph','image_contenido3_paragraph','image_contenido4_paragraph']
-
-        # images_alt_instance = [Posteo.image_contenido_alt, Posteo.image_contenido2_alt, Posteo.image_contenido3_alt, Posteo.image_contenido4_alt]
-        # images_title_instance = [Posteo.image_contenido_title, Posteo.image_contenido2_title, Posteo.image_contenido3_title, Posteo.image_contenido4_title]
-        # images_paragraph_instance = [Posteo.image_contenido_paragraph, Posteo.image_contenido2_paragraph, Posteo.image_contenido3_paragraph, Posteo.image_contenido4_paragraph]
-
-        # contexto['images_name'] = images_name
-        # contexto['image_to_load'] = image_to_load
-        # contexto['images_alt_atr'] = images_alt_atr
-        # contexto['images_title_atr'] = images_title_atr
-        # contexto['images_title_instance'] = images_title_instance
-        # contexto['images_paragraph_atr'] = images_paragraph_atr
-        # contexto['images_alt_instance'] = images_alt_instance
-        # contexto['images_paragraph_instance'] = images_paragraph_instance
-
-        # contexto['iterator'] = range(1,4)
-
         imagen_1 = {'name': 'Imagen 1',
                     'image_name_on_form': 'image_contenido',
                     'image_alt_on_form': 'image_contenido_alt',
@@ -301,3 +279,13 @@ def editar_galeria(request, post):
         contexto['imagenes'] = [imagen_1,imagen_2,imagen_3]
 
     return render(request, 'editar_galeria.html', contexto)
+
+@user_passes_test(lambda user: user.is_superuser)
+def eliminar_post(request, post):
+
+    contexto['home_url'] = request.get_full_path() == '/home/'
+
+    Posteo = Post.objects.get(title = post)
+    Posteo.delete()
+
+    return redirect('home')
