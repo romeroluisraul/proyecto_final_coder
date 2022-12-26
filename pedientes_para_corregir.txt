@@ -1,0 +1,5 @@
+- No funciona correctamente la busqueda por tags: los mismos no se actualizan al crear una publicación.
+
+- Agregar un botón para volver en la página de comentarios.
+
+- No funciona el botón para volver, bien en el logueo cuando ya se está logueado, bien en el registro cuando se está logueado.

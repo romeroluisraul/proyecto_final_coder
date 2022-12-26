@@ -46,11 +46,16 @@
             <p align="right"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Comentar</button></p>
         </div>
     </form>
+    <div class="w3-container">
+        <div class="w3-col m4 w3-right">
+            <p align="right"><a href="{% url 'visualizar' post.title %}" style="text-decoration:none"><button class="w3-button w3-black w3-padding-large w3-margin-bottom">Volver</button></a></p>
+        </div>
+    </div>
     </div>
     <hr>
 </div>
 
-    {% else %}
+{% else %}
 
 <div class="w3-card-4 w3-margin w3-white">
     <div class="w3-container">

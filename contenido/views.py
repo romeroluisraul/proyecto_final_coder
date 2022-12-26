@@ -18,8 +18,6 @@ TAGS_CHOICES = [('TR', 'Travel'),
                 ('PN', 'Parques'), ('LG', 'Lagos'), ('RN', 'Rutas'), ('MNT', 'Montañas'),
                 ('ID', 'Ideas'), ('TIP', 'Rata-tips')]
 
-contexto = {'anio' : str(date.today().year)}
-
 def choices(tag):
 
     i = 0
@@ -27,16 +25,17 @@ def choices(tag):
         i += 1
     return(TAGS_CHOICES[i][1])
 
-contexto['posteos'] = Post.objects.all()
+contexto = {'anio' : str(date.today().year)}
 contexto['tags'] = TAGS_CHOICES.copy()
-contexto['tags_usados'] = set([ post.tag1 for post in contexto['posteos']])
-contexto['tags_usados'] = list(contexto['tags_usados'].union(set([ post.tag2 for post in contexto['posteos']])))
 
 def home(request):
 
     contexto['home_url'] = request.get_full_path() == '/home/'
     contexto['ultima_pagina'] = str(request.get_full_path())
     contexto['posteos'] = Post.objects.all()
+
+    contexto['tags_usados'] = set([post.tag1 for post in Post.objects.all()])
+    contexto['tags_usados'] = list(contexto['tags_usados'].union(set([ post.tag2 for post in Post.objects.all()])))
 
     return render(request, 'home.html', contexto)
 
@@ -124,6 +123,22 @@ def pagina_comentarios(request, post):
 
     return render(request, 'comentarios.html', contexto)
 
+@user_passes_test(lambda user: user.is_superuser)
+def notificacion_actualizacion(request):
+
+    if contexto['contador'] == 0:
+
+        contexto['contador'] += 1
+        contexto['tags_usados'] = set([ post.tag1 for post in Post.objects.all()])
+        contexto['tags_usados'] = list(contexto['tags_usados'].union(set([ post.tag2 for post in Post.objects.all()])))
+        
+        respuesta = render(request, 'guardar_post.html', contexto)
+
+    else:
+        sleep(2)
+        respuesta = redirect('home')
+
+    return respuesta
 
 @user_passes_test(lambda user: user.is_superuser)
 def crear_nuevo_post(request):
@@ -147,17 +162,21 @@ def crear_nuevo_post(request):
 
             nuevo_post.save()
             contexto['script'] = True
+            contexto['contador'] = 0
+            respuesta = redirect('confirmacion_cambios')
 
         else:
 
             errors = mi_formulario.errors 
             contexto['errors'] = errors
+            respuesta = render(request, 'crear_nuevo_post.html', contexto)
             
     if request.method == 'GET':
         
         contexto['script'] = False
+        respuesta = render(request, 'crear_nuevo_post.html', contexto)
 
-    return render(request, 'crear_nuevo_post.html', contexto)
+    return respuesta
 
 @user_passes_test(lambda user: user.is_superuser)
 def editar_post(request, post):
@@ -167,8 +186,6 @@ def editar_post(request, post):
 
     Posteo = Post.objects.get(title = post)
     contexto['title'] = post
-
-    print('ERRRRROR')
 
     default_values = {'tag1':  Posteo.tag1, 'tag2':  Posteo.tag2,
                     'tag1_label': choices(Posteo.tag1), 'tag2_label': choices(Posteo.tag2),
@@ -195,18 +212,27 @@ def editar_post(request, post):
                 setattr(Posteo, atributo, informacion[atributo])
 
             Posteo.save()
+
             contexto['script'] = True
+            contexto['contador'] = 0
+
+            respuesta = redirect('confirmacion_cambios')
 
         else:
 
             errors = mi_formulario.errors 
             contexto['errors'] = errors
+
+            respuesta = render(request, 'editar_post.html', contexto)
             
     if request.method == 'GET':
 
+        contexto.pop('errors', None)
         contexto['script'] = False
 
-    return render(request, 'editar_post.html', contexto)
+        respuesta = render(request, 'editar_post.html', contexto)
+
+    return respuesta
 
 @user_passes_test(lambda user: user.is_superuser)
 def editar_galeria(request, post):

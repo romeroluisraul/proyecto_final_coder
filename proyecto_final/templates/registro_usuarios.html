@@ -65,7 +65,7 @@
         <h5><span class="w3-opacity">¡Ya se encuentra loggeado!</span></h5>
         <p>¿Desea salir y registrar otra cuenta?</p>
         <a href="{% url 'log_out_param' 'sing_up' %}" style="text-decoration:none"><button class="w3-button w3-black w3-padding-large w3-border w3-margin-bottom" type="submit"><b>Log-out</b></button></a>
-        <a href="{{pagina_actual}}" style="text-decoration:none"><button class="w3-button w3-padding-large w3-white w3-border w3-margin-bottom" type="submit"><b>Volver</b></button></a>
+        <a href="{{ ultima_pagina }}" style="text-decoration:none"><button class="w3-button w3-padding-large w3-white w3-border w3-margin-bottom" type="submit"><b>Volver</b></button></a>
     </div>
 </div>
 
