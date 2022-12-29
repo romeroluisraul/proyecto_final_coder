@@ -2,19 +2,19 @@ from django.db import models
 from django.utils.timezone import now as django_now
 from datetime import date
 
+TRAVEL,AR,CL = 'TR','AR','CL'
+CUYO, PATAGONIA, COSTA, BUENOS_AIRES, CENTRO = 'CY','PAT','MDP','BSAS','COB'
+PARQUES, LAGOS, RUTAS, MONTANIAS = 'PN','LG','RN','MNT'
+IDEAS, RATA_TIPS = 'ID','TIP'
+
+TAGS_CHOICES = [(TRAVEL, 'Travel'),
+                (AR, 'Argentina'), (CL, 'Chile'),
+                (CUYO, 'Cuyo'), (PATAGONIA, 'Patagonia'), (COSTA, 'Costa Atlántica'),
+                (BUENOS_AIRES, 'Buenos Aires'), (CENTRO, 'Centro'),
+                (PARQUES, 'Parques'), (LAGOS, 'Lagos'), (RUTAS, 'Rutas'), (MONTANIAS, 'Montañas'),
+                (IDEAS, 'Ideas'), (RATA_TIPS, 'Rata-tips')]
+
 class Post(models.Model):
-
-    TRAVEL,AR,CL = 'TR','AR','CL'
-    CUYO, PATAGONIA, COSTA, BUENOS_AIRES, CENTRO = 'CY','PAT','MDP','BSAS','COB'
-    PARQUES, LAGOS, RUTAS, MONTANIAS = 'PN','LG','RN','MNT'
-    IDEAS, RATA_TIPS = 'ID','TIP'
-
-    TAGS_CHOICES = [(TRAVEL, 'Travel'),
-                    (AR, 'Argentina'), (CL, 'Chile'),
-                    (CUYO, 'Cuyo'), (PATAGONIA, 'Patagonia'), (COSTA, 'Costa Atlántica'),
-                    (BUENOS_AIRES, 'Buenos Aires'), (CENTRO, 'Centro'),
-                    (PARQUES, 'Parques'), (LAGOS, 'Lagos'), (RUTAS, 'Rutas'), (MONTANIAS, 'Montañas'),
-                    (IDEAS, 'Ideas'), (RATA_TIPS, 'Rata-tips')]
 
     tag1 = models.CharField(max_length=4, choices=TAGS_CHOICES)
     tag2 = models.CharField(max_length=4, choices=TAGS_CHOICES)

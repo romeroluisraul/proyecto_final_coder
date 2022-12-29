@@ -2,28 +2,25 @@ from django.shortcuts import render, redirect
 from contenido.models import *
 from contenido.forms import *
 from django.db.models import Q
-from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import user_passes_test
 from autenticacion.views import *
 
 from datetime import date
 from time import sleep
-
-TAGS_CHOICES = [('TR', 'Travel'),
-                ('AR', 'Argentina'), ('CL', 'Chile'),
-                ('CY', 'Cuyo'), ('PAT', 'Patagonia'), ('MDP', 'Costa Atlántica'),
-                ('BSAS', 'Buenos Aires'), ('COB', 'Centro'),
-                ('PN', 'Parques'), ('LG', 'Lagos'), ('RN', 'Rutas'), ('MNT', 'Montañas'),
-                ('ID', 'Ideas'), ('TIP', 'Rata-tips')]
+from contenido.models import TAGS_CHOICES
 
 def choices(tag):
 
     i = 0
-    while TAGS_CHOICES[i][0] != tag.upper():
+    while TAGS_CHOICES[i][0].upper() != tag.upper():
         i += 1
-    return(TAGS_CHOICES[i][1])
+    return TAGS_CHOICES[i][1]
+
+def choices_inverse(label):
+    i = 0
+    while TAGS_CHOICES[i][1].upper() != label.upper():
+        i += 1
+    return TAGS_CHOICES[i][0]
 
 contexto = {'anio' : str(date.today().year)}
 contexto['tags'] = TAGS_CHOICES.copy()
@@ -315,3 +312,55 @@ def eliminar_post(request, post):
     Posteo.delete()
 
     return redirect('home')
+
+@user_passes_test(lambda user: user.is_superuser)
+def agregar_tag(request):
+
+    contexto['home_url'] = request.get_full_path() == '/home/'
+
+    if request.method == 'POST':
+
+        mi_formulario = NewTagForm(request.POST)
+
+        tags_usados = set([post.tag1 for post in Post.objects.all()] + [ post.tag2 for post in Post.objects.all()])
+        etiquetas_usadas = set([choices(tag) for tag in tags_usados])
+
+        if mi_formulario.is_valid():
+
+            informacion = mi_formulario.cleaned_data
+
+            if choices(informacion['label'].capitalize()) not in TAGS_CHOICES and informacion['tag'].capitalize() not in etiquetas_usadas: 
+
+                TAGS_CHOICES.append(tuple(informacion['tag'].upper(), informacion['label'].capitalize()))
+
+                contexto['tags'] = TAGS_CHOICES.copy()
+
+                contexto['tags_usados'] = set([ post.tag1 for post in Post.objects.all()])
+                contexto['tags_usados'] = list(contexto['tags_usados'].union(set([ post.tag2 for post in Post.objects.all()])))
+
+                contexto['script'] = True
+
+                respuesta = redirect('home')
+
+            else:
+
+                contexto['errors'] = 'El tag o la etiqueta de tag que pretende agregar ya se encuentra definida.'
+
+                respuesta = render(request, 'agregar_tags.html', contexto)
+
+        else:
+            errors = mi_formulario.errors 
+            contexto['errors'] = errors
+
+            respuesta = render(request, 'agregar_tags.html', contexto)
+
+    if request.method == 'GET':
+
+        contexto.pop('errors', None)
+        contexto['script'] = False
+
+        respuesta = render(request, 'agregar_tags.html', contexto)
+
+    return respuesta
+
+

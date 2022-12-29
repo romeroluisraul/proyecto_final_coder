@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if script %}
+
+<script>
+    alert("Tu tag ha sido guardado exitosamente.");
+</script>
+
+{% endif %}
+
+{% if errors and not script %}
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h3><b>¡Error en el registro!</b></h3>
+        <h5>{{errors}}</h5>
+    </div>
+    <hr>
+</div>
+
+{% endif %}
+
+
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <h4><b>Crear un nuevo Tag</b></h4>
+        <h5><span class="w3-opacity">Introduzca la informacion solicitada</span></h5>
+
+    </div>
+    <div class="w3-container">
+    <form method="post">
+        {% csrf_token %}
+        <p><label for="tag">Escriba la abreviatura de la etiqueta pesonalizada: </label><input type="text" name="tag"></p>
+        <p><label for="label">Escriba la etiqueta personalizada: </label><input type="text" name="label" maxlength="4"></p>
+        <div class="w3-col m4 w3-hide-small w3-right">
+            <p align="right"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Guardar</button></p>
+        </div>
+    </form>
+    </div>
+</div>
+
+{% endblock %}

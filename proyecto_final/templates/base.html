@@ -39,6 +39,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       <div class="w3-container w3-dark-gray" style="width:100%">
         <div class="w3-content w3-right">
           {% if request.user.is_superuser %}
+          <a href="{% url 'nuevo_tag' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>New Tag</b></button></a>
           <a href="{% url 'nuevo_post' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>New Post</b></button></a>
           {% endif %}
           <a href="{% url 'sing_up' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Sign-up</b></button></a>

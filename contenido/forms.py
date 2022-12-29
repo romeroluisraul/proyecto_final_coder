@@ -1,23 +1,12 @@
 from django import forms
 from datetime import datetime
+from contenido.models import TAGS_CHOICES
 
 class CommentaryForm(forms.Form):
 
     text_commentary = forms.CharField()
 
 class PublicationForm(forms.Form):
-
-    TRAVEL,AR,CL = 'TR','AR','CL'
-    CUYO, PATAGONIA, COSTA, BUENOS_AIRES, CENTRO = 'CY','PAT','MDP','BSAS','COB'
-    PARQUES, LAGOS, RUTAS, MONTANIAS = 'PN','LG','RN','MNT'
-    IDEAS, RATA_TIPS = 'ID','TIP'
-
-    TAGS_CHOICES = [(TRAVEL, 'Travel'),
-                    (AR, 'Argentina'), (CL, 'Chile'),
-                    (CUYO, 'Cuyo'), (PATAGONIA, 'Patagonia'), (COSTA, 'Costa Atlántica'),
-                    (BUENOS_AIRES, 'Buenos Aires'), (CENTRO, 'Centro'),
-                    (PARQUES, 'Parques'), (LAGOS, 'Lagos'), (RUTAS, 'Rutas'), (MONTANIAS, 'Montañas'),
-                    (IDEAS, 'Ideas'), (RATA_TIPS, 'Rata-tips')]
 
     tag1 = forms.ChoiceField(choices=TAGS_CHOICES)
     tag2 = forms.ChoiceField(choices=TAGS_CHOICES)
@@ -54,3 +43,9 @@ class ImageGalleryForm(forms.Form):
     image_contenido4_alt = forms.CharField(max_length=50, required=False)
     image_contenido4_title = forms.CharField(max_length=50, required=False)  
     image_contenido4_paragraph = forms.CharField(max_length=500, required=False)
+
+
+class NewTagForm(forms.Form):
+
+    tag = forms.CharField(max_length= 4)
+    label = forms.CharField(max_length= 50)

@@ -7,6 +7,7 @@ urlpatterns = [
     path('visualizar/<post>/', visualizar_publicacion, name = 'visualizar'),
     path('visualizar/<post>/comments', pagina_comentarios, name = 'comentarios'),
     path('crear/nuevo_post/', crear_nuevo_post, name = 'nuevo_post'),
+    path('crear/nuevo_tag/', agregar_tag, name = 'nuevo_tag'),
     path('editar/<post>', editar_post, name = 'editar_post'),
     path('editar/<post>/galeria', editar_galeria, name = 'editar_galeria'),
     path('eliminar/<post>/', eliminar_post, name = 'eliminar_post'),
