@@ -13,6 +13,7 @@
         <p><span class="w3-padding-large w3-right"><a href="{% url 'editar_post' post.title %}" style="text-decoration:none"><b>Editar esta Publicaci&oacuten</b></a></span></p>
         <p><span class="w3-padding-large w3-right"><a href="{% url 'eliminar_post' post.title %}" style="text-decoration:none"><b>Eliminar esta Publicaci&oacuten</b></a></span></p>
       {% endif %}
+      <h5><span class="w3-opacity"><i>Post de {{ post.author.username }}.</i></span></h5>
   </div>
   <!-- {% if request.user.is_superuser %}
   <div class="w3-container">

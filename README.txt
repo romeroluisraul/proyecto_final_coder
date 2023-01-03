@@ -63,8 +63,6 @@ Condiciones de entrega:
 
 - Dentro del Github deberá existir una carpeta con por lo menos 3 casos de pruebas debidamente documentados.
 
-- Cada blog, es decir cada model Blog debe tener enlazado un autor.
-
 
 
 

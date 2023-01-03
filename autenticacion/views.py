@@ -2,14 +2,12 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from contenido.models import *
 from contenido.forms import *
-from django.db.models import Q
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from contenido.views import contexto
 from autenticacion.forms import UserRegisterForm
 
-from datetime import date
 from time import sleep
 
 def logeo_user(request):

@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils.timezone import now as django_now
 from datetime import date
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+from django.conf import settings
 
 TRAVEL,AR,CL = 'TR','AR','CL'
 CUYO, PATAGONIA, COSTA, BUENOS_AIRES, CENTRO = 'CY','PAT','MDP','BSAS','COB'
@@ -15,6 +18,8 @@ TAGS_CHOICES = [(TRAVEL, 'Travel'),
                 (IDEAS, 'Ideas'), (RATA_TIPS, 'Rata-tips')]
 
 class Post(models.Model):
+
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, default=User.objects.get(username='romeroluisraul').pk, on_delete = models.SET_DEFAULT)
 
     tag1 = models.CharField(max_length=4, choices=TAGS_CHOICES)
     tag2 = models.CharField(max_length=4, choices=TAGS_CHOICES)
