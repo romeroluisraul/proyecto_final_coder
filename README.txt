@@ -13,7 +13,7 @@ Video funcionamiento:
 Acceso a la base de datos
 
     super usuario: romeroluisraul
-    contraseña: admin1234
+    contraseña: #### contactar por mail ####
 
 
 ¿En qué consiste la página web?
@@ -63,20 +63,7 @@ Condiciones de entrega:
 
 - Dentro del Github deberá existir una carpeta con por lo menos 3 casos de pruebas debidamente documentados.
 
-- Para crear, editar o borrar las fotos debes estar registrado como Administrador.
-
 - Cada blog, es decir cada model Blog debe tener enlazado un autor.
-
-- Crear, actualizar y borrar modelos dentro de la aplicación.
-
-- Las páginas están formadas por un título, un contenido en editor de texto avanzado (ckeditor por ejemplo), una imagen, fecha de posteo de la imagen.
-
-- avatar de usuarios.
-
-- Tener una app de login en el route accounts/login/ la cual permite loguearse con los datos de administrador o de usuario normal.
-
-- Tener una app de perfiles en el route accounts/profile/ la cual muestra la info de nuestro usuario y permite poder modificar y/o borrar: imagen - nombre - descripción -  un link a una página web - email y contraseña.
-
 
 
 

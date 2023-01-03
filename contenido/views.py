@@ -29,7 +29,7 @@ def home(request):
 
     contexto['home_url'] = request.get_full_path() == '/home/'
     contexto['ultima_pagina'] = str(request.get_full_path())
-    contexto['posteos'] = Post.objects.all()
+    contexto['posteos'] = Post.objects.all().order_by("date")
 
     contexto['tags_usados'] = set([post.tag1 for post in Post.objects.all()])
     contexto['tags_usados'] = list(contexto['tags_usados'].union(set([ post.tag2 for post in Post.objects.all()])))
@@ -53,7 +53,7 @@ def tags(request, tag):
     contexto['ultima_pagina'] = str(request.get_full_path())
 
     etiqueta = tag
-    posts = Post.objects.filter(Q(tag1__icontains=etiqueta) | Q(tag2__icontains=etiqueta))
+    posts = Post.objects.filter(Q(tag1__icontains=etiqueta) | Q(tag2__icontains=etiqueta)).order_by("-date")
 
     contexto['tag_buscado'] = choices(etiqueta)
     contexto['posts'] = posts
@@ -329,9 +329,9 @@ def agregar_tag(request):
 
             informacion = mi_formulario.cleaned_data
 
-            if choices(informacion['label'].capitalize()) not in TAGS_CHOICES and informacion['tag'].capitalize() not in etiquetas_usadas: 
+            if informacion['label'].capitalize() not in etiquetas_usadas and informacion['tag'].upper() not in tags_usados: 
 
-                TAGS_CHOICES.append(tuple(informacion['tag'].upper(), informacion['label'].capitalize()))
+                TAGS_CHOICES.append((informacion['tag'].upper(), informacion['label'].capitalize()))
 
                 contexto['tags'] = TAGS_CHOICES.copy()
 
@@ -340,7 +340,7 @@ def agregar_tag(request):
 
                 contexto['script'] = True
 
-                respuesta = redirect('home')
+                respuesta = redirect('nuevo_tag')
 
             else:
 

@@ -32,10 +32,15 @@
 
     </div>
     <div class="w3-container">
+        Recuerde, la etiqueta personalizada se crea de manera temporal en la interfaz, pero no se almacena definitivamente en la base de datos hasta que
+        cree un post que la incluya.
+    </div>
+    <hr>
+    <div class="w3-container">
     <form method="post">
         {% csrf_token %}
-        <p><label for="tag">Escriba la abreviatura de la etiqueta pesonalizada: </label><input type="text" name="tag"></p>
-        <p><label for="label">Escriba la etiqueta personalizada: </label><input type="text" name="label" maxlength="4"></p>
+        <p><label for="tag">Escriba la abreviatura de la etiqueta pesonalizada: </label><input type="text" name="tag" maxlength="4"></p>
+        <p><label for="label">Escriba la etiqueta personalizada: </label><input type="text" name="label"></p>
         <div class="w3-col m4 w3-hide-small w3-right">
             <p align="right"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Guardar</button></p>
         </div>
