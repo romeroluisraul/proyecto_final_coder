@@ -7,7 +7,7 @@ from autenticacion.views import *
 
 from datetime import date
 from time import sleep
-from contenido.models import TAGS_CHOICES
+from contenido.tags import TAGS_CHOICES
 
 def choices(tag):
 
@@ -332,7 +332,14 @@ def agregar_tag(request):
 
             if informacion['label'].capitalize() not in etiquetas_usadas and informacion['tag'].upper() not in tags_usados: 
 
-                TAGS_CHOICES.append((informacion['tag'].upper(), informacion['label'].capitalize()))
+                ruta = './contenido'
+                nombre_archivo = '/tags.py'
+
+                archivo = open(ruta + nombre_archivo, 'a', encoding='utf-8')
+
+                archivo.write(f'\nTAGS_CHOICES.append(("{informacion["tag"].upper()}", "{informacion["label"].capitalize()}"))' + '\n')
+
+                archivo.close()
 
                 contexto['tags'] = TAGS_CHOICES.copy()
 

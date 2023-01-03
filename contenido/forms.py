@@ -1,6 +1,6 @@
 from django import forms
 from datetime import datetime
-from contenido.models import TAGS_CHOICES
+from contenido.tags import TAGS_CHOICES
 
 class CommentaryForm(forms.Form):
 

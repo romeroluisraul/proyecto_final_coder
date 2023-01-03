@@ -4,18 +4,7 @@ from datetime import date
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.conf import settings
-
-TRAVEL,AR,CL = 'TR','AR','CL'
-CUYO, PATAGONIA, COSTA, BUENOS_AIRES, CENTRO = 'CY','PAT','MDP','BSAS','COB'
-PARQUES, LAGOS, RUTAS, MONTANIAS = 'PN','LG','RN','MNT'
-IDEAS, RATA_TIPS = 'ID','TIP'
-
-TAGS_CHOICES = [(TRAVEL, 'Travel'),
-                (AR, 'Argentina'), (CL, 'Chile'),
-                (CUYO, 'Cuyo'), (PATAGONIA, 'Patagonia'), (COSTA, 'Costa Atlántica'),
-                (BUENOS_AIRES, 'Buenos Aires'), (CENTRO, 'Centro'),
-                (PARQUES, 'Parques'), (LAGOS, 'Lagos'), (RUTAS, 'Rutas'), (MONTANIAS, 'Montañas'),
-                (IDEAS, 'Ideas'), (RATA_TIPS, 'Rata-tips')]
+from contenido.tags import TAGS_CHOICES
 
 class Post(models.Model):
 
