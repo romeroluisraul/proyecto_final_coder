@@ -155,7 +155,8 @@ def crear_nuevo_post(request):
                               title = informacion['title'], subtitle = informacion['subtitle'],
                               description = informacion['description'], text_content = informacion['text_content'],
                               date = informacion['date'],
-                              image_portada = informacion['image_portada'], image_portada_alt = informacion['image_portada_alt'], image_portada_title = informacion['image_portada_title'])
+                              image_portada = informacion['image_portada'], image_portada_alt = informacion['image_portada_alt'], image_portada_title = informacion['image_portada_title'],
+                              author = request.user)
 
             nuevo_post.save()
             contexto['script'] = True
