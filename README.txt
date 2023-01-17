@@ -8,7 +8,7 @@ Las plantillas toman fuentes y estilos css de la nube. Por tanto, para la correc
 
 Video funcionamiento:
 
-
+https://youtu.be/5RBgB2EFo4k
 
 Acceso a la base de datos
 
@@ -58,12 +58,3 @@ Rutas de la aplicacion autenticación:
 
 
 ------
-
-Condiciones de entrega:
-
-- Dentro del Github deberá existir una carpeta con por lo menos 3 casos de pruebas debidamente documentados.
-
-
-
-
-
