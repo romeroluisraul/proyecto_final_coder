@@ -9,3 +9,4 @@ TAGS_CHOICES = [(TRAVEL, 'Travel'),
                 (BUENOS_AIRES, 'Buenos Aires'), (CENTRO, 'Centro'),
                 (PARQUES, 'Parques'), (LAGOS, 'Lagos'), (RUTAS, 'Rutas'), (MONTANIAS, 'Montañas'),
                 (IDEAS, 'Ideas'), (RATA_TIPS, 'Rata-tips')]
+TAGS_CHOICES.append(("TECN", "Tecnología"))
