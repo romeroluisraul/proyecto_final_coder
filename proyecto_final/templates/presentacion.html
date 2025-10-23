@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>En Ruta por 🇦🇷</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+<style>
+  .div-blue {
+      background-color: #5074B4;
+  }
+  .div-dark-gray {
+      background-color: #616161;
+  }
+  .div-gray {
+      background-color: #F1F1F1;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  }
+</style>
+</head>
+
+{% load static %}
+
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-padding-16">
+  <div class="div-gray">
+    <div class="div-dark-gray" style="width:100%; height: 40px;">
+      <div class="w3-container w3-dark-gray" style="width:100%">
+        <div class="w3-content w3-right">
+          {% if request.user.is_superuser %}
+          <a href="{% url 'nuevo_tag' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>New Tag</b></button></a>
+          <a href="{% url 'nuevo_post' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>New Post</b></button></a>
+          {% endif %}
+          <a href="{% url 'sing_up' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Sign-up</b></button></a>
+          <a href="{% url 'log_in' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-in</b></button></a>
+          <a href="{% url 'log_out' %}" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>Log-out</b></button></a>
+          <a href="#" style="text-decoration:none"><button class="w3-button w3-dark-gray w3-padding" type="submit"><b>My Account</b></button></a>
+          <img src="{% static 'profile_user_icon-copia.png' %}" style="height: 32px;">
+          {% if request.user.is_authenticated %}
+          <b>{{request.user}}</b>
+          {% else %}
+          <b>Invitado</b>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="w3-container w3-center">
+      <h1 align="center"><a href="{% url 'home' %}" style="text-decoration:none"><b>Luis Ra&uacutel Romero Avila</b></a></h1>
+    </div>
+    <div class="div-blue" style="width:100%; height: 10px;"></div>
+  </div>
+  <div class="w3-container w3-center">
+    <p align="center">Welcome to my <span class="w3-tag">unupdated</span> blog.</p>
+  </div>
+</header>
+
+<!-- Grid -->
+<div class="w3-row">
+<!-- Blog entries -->
+  <div class="w3-col l8 s12">
+    {% block content %}{% endblock %}
+  </div>
+
+<!-- Introduction menu -->
+  <div class="w3-col l4">
+    <!-- About Card -->
+    <div class="w3-card w3-margin w3-margin-top">
+    <img src="{% static 'yo.jpeg' %}" alt="Imagen del Autor" title="El autor en las escaleras helicoidales de los museos Vaticanos, Roma, VA" style="width:100%">
+      <div class="w3-container w3-white">
+        <h4><b>Acerca del autor</b></h4>
+        <p align="justify">Just me, myself and I, exploring the universe of uknownment. I have a hunger for knowledge and an interest of math, modeling and AI. I want to share my world with you in this blog.</p>
+        <p align="right">
+        <div>
+            <a href="{% url 'autor' %}" style="text-decoration:none"><button class="w3-button w3-white w3-border w3-padding-large" type = 'submit'><b>READ MORE »</b></button></a>
+        </div>
+        </p>
+      </div>
+    </div><hr>
+
+
+    <!-- Posts -->
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4>Iconos favoritos del autor</h4>
+      </div>
+      <ul class="w3-ul w3-hoverable w3-white">
+        <li class="w3-padding-16">
+          <img src="{% static 'pasaporte.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Lorem</span><br>
+          <span>Sed mattis nunc</span>
+        </li>
+        <li class="w3-padding-16">
+          <img src="{% static 'ruta_40.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Ipsum</span><br>
+          <span>Praes tinci sed</span>
+        </li>
+        <li class="w3-padding-16">
+          <img src="{% static 'dollar.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Dorum</span><br>
+          <span>Ultricies congue</span>
+        </li>
+        <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+          <img src="{% static 'usb.jpg' %}" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+          <span class="w3-large">Mingsum</span><br>
+          <span>Lorem ipsum dipsum</span>
+        </li>
+      </ul>
+    </div>
+    <hr>
+
+    <!-- Labels / tags -->
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4>Tags</h4>
+      </div>
+      <div class="w3-container w3-white">
+      <p>
+        {% for tag, label in tags %}
+        {% if tag in tags_usados %}
+        <span class="w3-tag w3-black w3-margin-bottom"><a href="{% url 'tags' tag %}" style="text-decoration:none">{{label}}</a></span>
+        {% else %}
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">{{label}}</span>
+        {% endif %}
+        {% endfor %}
+      </p>
+      </div>
+    </div>
+
+<!-- END Introduction Menu -->
+  </div>
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <p>
+  {% if not home_url %}
+    <a href="{% url 'home' %}" style="text-decoration:none"><button class="w3-button w3-black w3-padding-large w3-margin-bottom" type="submit">Home</button></a>
+  {% else %}
+    <!-- <form action= {% url 'home' %} style="display:inline-block"> -->
+    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom" type="submit" title="You are already at home page.">Home</button>
+    <!-- </form> -->
+  {% endif %}
+  </p>
+  <p>Template powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  <p>This webpage was made with <a href="https://www.djangoproject.com/" target="_blank">Django</a>.</p>
+  <p>© {{anio}} ROMERO AVILA <a href="mailto:luisr.romeroa@gmail.com?Subject=Pagina%20web%20CoderHouse" target="_blank">e-mail</a>.</p>
+  <p>Not all of the images in this webpage belong to me. Let me know by <a href="mailto:luisr.romeroa@gmail.com?Subject=Copyrights%20Pagina%20web%20CoderHouse" target="_blank">e-mail</a> about any trouble with copyrights.</p>
+</footer>
+
+</body>
+</html>
